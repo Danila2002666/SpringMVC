@@ -1,11 +1,10 @@
-package com.example.lesson.services;
+package com.example.lesson.service;
 
 import com.example.lesson.models.Person;
-import com.example.lesson.repositories.PersonRepository;
+import com.example.lesson.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 

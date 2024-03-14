@@ -1,4 +1,4 @@
-package com.example.lesson.repositories;
+package com.example.lesson.repository;
 
 import com.example.lesson.models.Street;
 import org.springframework.data.jpa.repository.JpaRepository;
