@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Persons</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 3px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+<h1>List of Persons</h1>
+<a class="btn btn-primary" th:href="@{/person/add}">Add Person</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Post Name</th>
+        <th>Number</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.lastName}"></td>
+        <td th:text="${person.postName}"></td>
+        <td th:text="${person.number}"></td>
+        <td th:text="${person.email}"></td>
+        <td>
+            <a class="btn btn-success" th:href="@{'/person/edit/' + ${person.id}}">Edit</a>
+            <form th:action="@{'/person/delete/' + ${person.id}}" method="post" style="display: inline;">
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h1>Add Person</h1>
+<a href="/person/add"></a>
+</body>
+</html>
