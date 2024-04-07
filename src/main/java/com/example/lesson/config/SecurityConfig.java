@@ -25,7 +25,11 @@ public class SecurityConfig {
                 .disable()
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/person", true)
                         .permitAll())
+                .logout()
+                .permitAll()
+                .and()
                 .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
                 .httpBasic();
         return http.build();
