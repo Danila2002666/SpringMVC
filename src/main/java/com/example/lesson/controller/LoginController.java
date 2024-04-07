@@ -8,6 +8,6 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // Это название вашего HTML-файла без расширения
+        return "site/login"; // Это название вашего HTML-файла без расширения
     }
 }
