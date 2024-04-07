@@ -1,0 +1,110 @@
+/* Общие стили для всей страницы */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Стили для заголовка */
+.header-container {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+/* Стили для секции профиля */
+.profile-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-nav-header {
+    color: #2c3e50;
+}
+
+.section-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-item-a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.nav-item-a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для блока приветствия и информации о пользователе */
+.header-welcome-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.company-info-container,
+.user-info-container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для секции техподдержки */
+.support-info-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.support-heading {
+    color: #2c3e50;
+}
+
+/* Стили для блока безопасности платежей */
+.payment-security-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для подвала */
+.footer-container {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
