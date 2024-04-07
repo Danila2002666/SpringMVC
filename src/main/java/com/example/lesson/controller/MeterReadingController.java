@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/meter-readings")
 public class MeterReadingController {
 
-    //    @RestController
+//    @RestController
 //    @RequestMapping("/api")
 //    public class MeterReadingController {
 //

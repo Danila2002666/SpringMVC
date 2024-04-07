@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Apartment</title>
+</head>
+<body>
+<h1>Add apartment</h1>
+<form th:action="@{/apartment/add}" method="post">
+    <label>House number:</label><br>
+    <input type="text" th:field="${apartment.houseNumber}"><br>
+    <label>Apartment number:</label><br>
+    <input type="text" th:field="${apartment.apartmentNumber}"><br>
+    <select th:field="${apartment.streetId}">
+        <option value="">Select Street</option>
+        <th:block th:each="street : ${streets}">
+            <option th:value="${street.id}" th:text="${street.name}"></option>
+        </th:block>
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
