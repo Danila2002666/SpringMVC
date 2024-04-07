@@ -2,6 +2,7 @@ package com.example.lesson.config;
 
 import com.example.lesson.models.Person;
 import com.example.lesson.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,12 +21,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeHttpRequests((authz) -> authz
-                        .anyRequest().authenticated()
-                )
-                .httpBasic();
+        http.csrf().disable().authorizeHttpRequests((authz) -> authz.anyRequest().authenticated()).httpBasic();
         return http.build();
     }
 

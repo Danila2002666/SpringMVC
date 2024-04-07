@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style3.css">
+    <title>Информационно-расчетная система</title>
+</head>
+
+<body>
+
+    <header class="header-container">
+        <div class="logo">
+            <h1>Информационно-расчетная система</h1>
+            <p>Управляй своими расходами</p>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="meter-reading-container">
+            <h2 class="section-nav-header">Передача показаний</h2>
+            <form action="#" method="post">
+                <label>Номер счетчика 1:</label>
+                <span id="meter-number-1">2345434</span>
+                <input type="text" id="reading-1" name="reading-1" placeholder="Показания" required><br>
+
+                <label>Номер счетчика 2:</label>
+                <span id="meter-number-2">5678901</span>
+                <input type="text" id="reading-2" name="reading-2" placeholder="Показания" required><br>
+
+                <label>Номер счетчика 3:</label>
+                <span id="meter-number-3">1234567</span>
+                <input type="text" id="reading-3" name="reading-3" placeholder="Показания" required><br>
+
+                <label>Номер счетчика 4:</label>
+                <span id="meter-number-4">9876543</span>
+                <input type="text" id="reading-4" name="reading-4" placeholder="Показания" required><br>
+
+                <button type="submit">Отправить</button>
+            </form>
+            <p>Прием показаний разрешен с 18 до 23 числа текущего месяца.</p>
+        </section>
+
+        <section class="meter-history-container">
+            <h2 class="section-nav-header">История внесения показаний ИПУ</h2>
+            <table>
+                <!-- Таблица с историей показаний остается без изменений -->
+            </table>
+        </section>
+
+        <section class="meter-history-container">
+            <h2 class="section-nav-header">История внесения показаний ИПУ</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Серийный номер</th>
+                        <th>Услуга</th>
+                        <th>Годен до</th>
+                        <th>Январь</th>
+                        <th>Февраль</th>
+                        <th>Март</th>
+                        <th>Апрель</th>
+                        <th>Май</th>
+                        <th>Июнь</th>
+                        <th>Июль</th>
+                        <th>Август</th>
+                        <th>Сентябрь</th>
+                        <th>Октябрь</th>
+                        <th>Ноябрь</th>
+                        <th>Декабрь</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>19291935</td>
+                        <td>Горячая вода</td>
+                        <td>09.06.2027</td>
+                        <td>239.000</td>
+                        <td>241.000</td>
+                        <td>...</td>
+                        <td>245.000</td>
+                        <td>247.000</td>
+                        <td>249.000</td>
+                        <td>252.000</td>
+                        <td>255.000</td>
+                        <td>257.000</td>
+                        <td>261.000</td>
+                        <td>265.000</td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>15454733</td>
+                        <td>Горячая вода</td>
+                        <td>09.06.2027</td>
+                        <td>239.000</td>
+                        <td>241.000</td>
+                        <td>...</td>
+                        <td>245.000</td>
+                        <td>247.000</td>
+                        <td>249.000</td>
+                        <td>252.000</td>
+                        <td>255.000</td>
+                        <td>257.000</td>
+                        <td>261.000</td>
+                        <td>265.000</td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>67323533</td>
+                        <td>Холодная вода</td>
+                        <td>09.06.2027</td>
+                        <td>239.000</td>
+                        <td>241.000</td>
+                        <td>...</td>
+                        <td>245.000</td>
+                        <td>247.000</td>
+                        <td>249.000</td>
+                        <td>252.000</td>
+                        <td>255.000</td>
+                        <td>257.000</td>
+                        <td>261.000</td>
+                        <td>265.000</td>
+                        <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>32454653</td>
+                        <td>Холодная вода</td>
+                        <td>09.06.2027</td>
+                        <td>239.000</td>
+                        <td>241.000</td>
+                        <td>...</td>
+                        <td>245.000</td>
+                        <td>247.000</td>
+                        <td>249.000</td>
+                        <td>252.000</td>
+                        <td>255.000</td>
+                        <td>257.000</td>
+                        <td>261.000</td>
+                        <td>265.000</td>
+                        <td>...</td>
+                    </tr>
+                    <!-- Добавьте остальные записи аналогичным образом -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer class="footer-container">
+        <p>© 2014-2023 1С:ЕРЦ Квартплата.</p>
+    </footer>
+
+</body>
+
+</html>
