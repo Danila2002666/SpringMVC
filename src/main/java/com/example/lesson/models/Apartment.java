@@ -34,5 +34,9 @@ public class Apartment {
     private int apartmentNumber;
 
     @OneToMany(mappedBy = "apartment", cascade = CascadeType.ALL)
-    private List<Meters> meters = new ArrayList<>();
+    private List<Meter> meters = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "rate_id")
+    private Rate rate;
 }

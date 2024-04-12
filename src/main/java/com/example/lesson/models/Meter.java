@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Data
 @Table(name = "meters")
-public class Meters {
+public class Meter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -28,6 +28,6 @@ public class Meters {
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
-    @OneToMany(mappedBy = "meters", cascade = CascadeType.ALL)
-    private List<Readings> readings = new ArrayList<>();
+    @OneToMany(mappedBy = "meter", cascade = CascadeType.ALL)
+    private List<Reading> readings = new ArrayList<>();
 }

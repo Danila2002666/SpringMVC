@@ -4,27 +4,30 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Data
-@Table(name = "readings")
-public class Readings {
+@Table(name = "reading")
+public class Reading {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "counter_id")
-    private Meters meters;
+    @JoinColumn(name = "meter_id")
+    private Meter meter;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "value")
     private BigDecimal value;
+
+
 }

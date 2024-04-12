@@ -20,26 +20,17 @@
     <main>
 
         <section class="meter-reading-container">
-            <h2 class="section-nav-header">Передача показаний</h2>
-            <form action="#" method="post">
-                <label>Номер счетчика 1:</label>
-                <span id="meter-number-1">2345434</span>
-                <input type="text" id="reading-1" name="reading-1" placeholder="Показания" required><br>
-
-                <label>Номер счетчика 2:</label>
-                <span id="meter-number-2">5678901</span>
-                <input type="text" id="reading-2" name="reading-2" placeholder="Показания" required><br>
-
-                <label>Номер счетчика 3:</label>
-                <span id="meter-number-3">1234567</span>
-                <input type="text" id="reading-3" name="reading-3" placeholder="Показания" required><br>
-
-                <label>Номер счетчика 4:</label>
-                <span id="meter-number-4">9876543</span>
-                <input type="text" id="reading-4" name="reading-4" placeholder="Показания" required><br>
-
-                <button type="submit">Отправить</button>
-            </form>
+            <div th:each="apartment, meters : ${meters}">
+                <h2 class="section-nav-header" th:text="${apartment}"></h2>
+                <form action="#" method="post">
+                    <div th:each="meter : ${meters}">
+                        <label th:text="${'Номер счетчика ' + meter}"></label>
+                        <span th:text="${meter}"></span>
+                        <input type="text" th:id="'reading-' + ${meter}" th:name="'reading-' + ${meter}" placeholder="Показания" required><br>
+                    </div>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
             <p>Прием показаний разрешен с 18 до 23 числа текущего месяца.</p>
         </section>
 
