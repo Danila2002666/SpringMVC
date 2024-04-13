@@ -24,7 +24,9 @@ public class PersonController {
     @GetMapping
     public String listPerson(Model model) {
         List<Person> persons = personService.getAllPersons();
+        Person user = personService.getUser();
         model.addAttribute("persons", persons);
+        model.addAttribute("user",user);
         return "person/person";
     }
 

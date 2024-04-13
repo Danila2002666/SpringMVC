@@ -39,4 +39,14 @@ public class Apartment {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "rate_id")
     private Rate rate;
+    @Override
+    public String toString() {
+        return "Apartment{" +
+                "id=" + id +
+                ", houseNumber=" + houseNumber +
+                ", apartmentNumber=" + apartmentNumber +
+                '}';
+    }
+
+
 }

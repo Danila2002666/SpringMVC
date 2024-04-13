@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface MeterRepository extends JpaRepository<Meter, Long> {
     List<Meter> findAllByApartment(Apartment apartment);
+
+    Meter findAllByCounterNumber(Long counterID);
 }

@@ -2,8 +2,10 @@ package com.example.lesson.service;
 
 import com.example.lesson.models.Person;
 import com.example.lesson.repository.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonService {
     private final PersonRepository personRepository;
+
+    public Person getUser(){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Person person = personRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
+        return person;
+    }
 
     public List<Person> getAllPersons() {
         return personRepository.findAll();

@@ -47,7 +47,9 @@
     </style>
 </head>
 <body>
-<h1>List of Persons</h1>
+<h1 th:text="${user.getLastName()}">List of Persons</h1>
+<h1 th:text="${user.getName()}">List of Persons</h1>
+<h1 th:text="${user.getPostName()}">List of Persons</h1>
 <a class="btn btn-primary" th:href="@{/person/add}">Add Person</a>
 <table>
     <thead>
@@ -78,7 +80,9 @@
     </tr>
     </tbody>
 </table>
-<h1>Add Person</h1>
-<a href="/person/add"></a>
+
+<a href="/meter-readings"><h1>Meter-readings</h1></a>
+
+<a href="/person/add"><h1>Add Person</h1></a>
 </body>
 </html>

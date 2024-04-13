@@ -18,15 +18,46 @@
     </header>
 
     <main>
+<!--        <form th:action="@{/person/add}" method="post">-->
+<!--            <label>Name:</label><br>-->
+<!--            <input type="text" th:field="${person.name}"><br>-->
+<!--            <label>Last Name:</label><br>-->
+<!--            <input type="text" th:field="${person.lastName}"><br>-->
+<!--            <label>Post Name:</label><br>-->
+<!--            <input type="text" th:field="${person.postName}"><br>-->
+<!--            <label>Number:</label><br>-->
+<!--            <input type="text" th:field="${person.number}"><br>-->
+<!--            <label>Email:</label><br>-->
+<!--            <input type="text" th:field="${person.email}"><br>-->
+<!--            <input type="submit" value="Submit">-->
+<!--        </form>-->
+
+<!--        <section class="meter-reading-container">-->
+<!--            <div th:each="entry : ${meters}">-->
+<!--                <h2 class="section-nav-header" th:text="${entry.key.getId()}"></h2>-->
+<!--                &lt;!&ndash; Ваш action должен указывать на URL, который обрабатывается вашим методом POST в контроллере &ndash;&gt;-->
+<!--                <form th:action="@{/meter-readings/add}" method="post">-->
+<!--                    <div th:each="meter, meterStat : ${entry.value}">-->
+<!--                        <label th:text="${'Номер счетчика ' + meter.getId()}"></label>-->
+<!--                        <span th:text="${meter.getCounterNumber()}"></span>-->
+<!--                        <input type="hidden" th:name="'counterNumbers[' + ${meterStat.index} + ']'" th:value="${meter.getCounterNumber()}" />-->
+<!--                        <input type="text" th:id="'reading-' + ${meter.getId()}" th:name="'readings[' + ${meterStat.index} + ']'" placeholder="Показания" required><br>-->
+<!--                    </div>-->
+<!--                    <button type="submit">Отправить</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <p>Прием показаний разрешен с 18 до 23 числа текущего месяца.</p>-->
+<!--        </section>-->
 
         <section class="meter-reading-container">
-            <div th:each="apartment, meters : ${meters}">
-                <h2 class="section-nav-header" th:text="${apartment}"></h2>
-                <form action="#" method="post">
-                    <div th:each="meter : ${meters}">
-                        <label th:text="${'Номер счетчика ' + meter}"></label>
-                        <span th:text="${meter}"></span>
-                        <input type="text" th:id="'reading-' + ${meter}" th:name="'reading-' + ${meter}" placeholder="Показания" required><br>
+            <div th:each="entry : ${meters}">
+                <h2 class="section-nav-header" th:text="${entry.key.getId()}"></h2>
+                <!-- Ваш action должен указывать на URL, который обрабатывается вашим методом POST в контроллере -->
+                <form th:action="@{/meter-readings/add}" method="post">
+                    <div th:each="meter, meterStat : ${entry.value}">
+                        <label th:text="${'Номер счетчика ' + meter.getId()}"></label>
+                        <span th:text="${meter.getCounterNumber()}"></span>
+                        <input type="text" th:id="'reading-' + ${meter.getId()}" th:name="${meter.getCounterNumber()}" placeholder="Показания" required><br>
                     </div>
                     <button type="submit">Отправить</button>
                 </form>

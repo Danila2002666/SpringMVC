@@ -24,4 +24,13 @@ public class Street {
 
     @OneToMany(mappedBy = "streetId", cascade = CascadeType.ALL)
     private List<Apartment> apartments = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Street{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", apartments=" + apartments +
+                '}';
+    }
 }

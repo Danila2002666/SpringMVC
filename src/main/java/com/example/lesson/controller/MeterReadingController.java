@@ -4,7 +4,9 @@ package com.example.lesson.controller;
 import com.example.lesson.models.Apartment;
 import com.example.lesson.models.Meter;
 import com.example.lesson.models.Person;
+import com.example.lesson.models.Street;
 import com.example.lesson.service.MeterReadingService;
+import com.example.lesson.service.StreetService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,20 +27,23 @@ import java.util.Map;
 public class MeterReadingController {
 
     private final MeterReadingService meterReadingService;
+    private final StreetService streetService;
 
 
-    @GetMapping
+    @PostMapping("/add")
+    public String submitMeterReadings(@RequestParam Map<String,String> allParams) {
+        System.out.println(allParams.toString());
+        meterReadingService.saveReading(allParams);
+        return "redirect:/meter-readings";
+    }
+    @GetMapping()
     public String showMeterReadingsForm(Model model) {
         Map<Apartment, List<Meter>> meters = meterReadingService.findPersonMeters();
+//      List<Street> street = streetService.getStreetHashMap(meters);
         model.addAttribute("meters", meters);
+//      model.addAttribute("street", street);
         return "site/meter_readings";
     }
 
-    @PostMapping("/save")
-    public String saveMeterReadings(@RequestParam("meter1") String meter1,
-                                    @RequestParam("meter2") String meter2) {
-        // Сохранение показаний счетчиков в базу данных
-        // Для этого вам может потребоваться использовать сервисы или репозитории
-        return "redirect:/meter-readings";
-    }
+
 }
