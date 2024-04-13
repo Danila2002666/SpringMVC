@@ -1,17 +1,29 @@
 package com.example.lesson.models;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "apartment")
 public class Apartment {
     @Id
@@ -39,14 +51,4 @@ public class Apartment {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "rate_id")
     private Rate rate;
-    @Override
-    public String toString() {
-        return "Apartment{" +
-                "id=" + id +
-                ", houseNumber=" + houseNumber +
-                ", apartmentNumber=" + apartmentNumber +
-                '}';
-    }
-
-
 }

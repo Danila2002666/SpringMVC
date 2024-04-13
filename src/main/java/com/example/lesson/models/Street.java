@@ -1,17 +1,26 @@
 package com.example.lesson.models;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "street")
 public class Street {
     @Id
@@ -24,13 +33,4 @@ public class Street {
 
     @OneToMany(mappedBy = "streetId", cascade = CascadeType.ALL)
     private List<Apartment> apartments = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "Street{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", apartments=" + apartments +
-                '}';
-    }
 }
