@@ -3,69 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style1.css">
     <title>Информационно-расчетная система</title>
+    <style>
+        /* Сброс стандартных стилей и установка общих свойств для всей страницы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ecf0f1;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Стили для шапки */
+        .header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Стили для информации о пользователе и управляющей компании */
+        .header-company, .header-support, .user-info {
+            padding: 10px;
+            background-color: #fff;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            vertical-align: top;
+            color: #333; /* Цвет текста, чтобы он был виден на белом фоне */
+        }
+
+        /* Стили для кнопки выхода */
+        .logout-button {
+            background-color: #dc3545;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block; /* Чтобы кнопка не обтекала содержимое */
+            margin: 10px;
+        }
+
+        /* Стили для основной навигации */
+        .navigation {
+            background-color: #2c3e50;
+            padding: 10px 0;
+            color: #fff;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        .nav-item {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .nav-link:hover {
+            background-color: #233140;
+            border-radius: 5px;
+        }
+
+        /* Стили для основного содержимого */
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Стили для футера */
+        .footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Медиа-запросы для адаптивного дизайна */
+        @media (max-width: 768px) {
+            .header-company, .header-support, .user-info {
+                display: block;
+                margin: 10px auto;
+            }
+
+            .nav-item {
+                display: block;
+                margin: 5px 0;
+            }
+
+            .logout-button {
+                display: block;
+                width: auto;
+                margin: 10px auto;
+            }
+        }
+
+
+    </style>
 </head>
 <body>
 
-<header class="header-container">
-    <div class="logo">
-        <h1>Информационно-расчетная система</h1>
-        <p>Управляй своими расходами</p>
+<header class="header">
+    <div class="header-top">
+        <div class="header-company">
+            <p class="company-name">Управляющая компания:</p>
+            <p class="company-info">ООО "Волжские коммунальные системы"</p>
+        </div>
+        <div class="header-support">
+            <p class="support-title">Техническая поддержка сайта</p>
+            <p class="support-info">ООО "ИТ-Эксперт"</p>
+            <p class="support-worktime">Режим работы: рабочие дни с 8:00 до 17:00</p>
+            <p class="support-email">Электронная почта: help@ivkpru.ru</p>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="user-welcome">
+            <p class="user-greeting">Здравствуйте,</p>
+            <div class="user-details">
+                <span class="user-name" th:text="${user.getLastName()} + ' ' + ${user.getName()} + ' ' + ${user.getPostName()}">РЕЗНИКОВ ДАНИЛА ЕВГЕНЬЕВИЧ</span>,
+            </div>
+            <div th:each="entry : ${apartmentsWithStreets}">
+                <span class="user-address" th:text="${entry.value.name} + ' ул., д. ' + ${entry.key.houseNumber} + ', кв. ' + ${entry.key.apartmentNumber}">Голосова ул. 44 кв.275</span>
+            </div>
+            <span class="user-account" th:text="'Лицевой счет: ' + ${user.getId()}">Лицевой счет: 63229508927</span>
+            <button class="logout-button" >Выйти</button>
+        </div>
     </div>
 </header>
 
-<main>
-    
-    <section class="profile-container">
-        <h2 class="section-nav-header">Профиль</h2>
-        <nav class="section-nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="" class="nav-item-a">Счетчики</a></li>
-                <li class="nav-item"><a href="" class="nav-item-a">Квитанции</a></li>
-                <li class="nav-item"><a href="" class="nav-item-a">Оплата онлайн</a></li>
-                <li class="nav-item"><a href="" class="nav-item-a">История оплат</a></li>
-                <li class="nav-item"><a href="" class="nav-item-a">Обратная связь</a></li>
-            </ul>
-        </nav>
+<nav class="navigation">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="/meter-readings" class="nav-link">Передать показания</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Счетчики</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Квитанции</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Оплата онлайн</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">История оплат</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Обратная связь</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+    <section class="announcement-section">
+        <h2 class="section-title">Уважаемые граждане, пользующиеся льготным проездом (270 руб.) по Социальной
+            карте!</h2>
+        <p class="announcement-text">С 01.01.2024 года Социальная карта по проезду будет заблокирована!...</p>
+        <!-- Дальнейший текст вашего объявления -->
     </section>
 
-    <div class="header-welcome-container">
-        <section class="company-info-container">
-            <h2>Управляющая компания:</h2>
-            <p>ООО "Волжские коммунальные системы"</p>
-        </section>
-
-        <section class="user-info-container">
-            <h2>Здравствуйте, РЕЗНИКОВ ДАНИЛА ЕВГЕНЬЕВИЧ!</h2>
-            <p>Адрес: Голосова ул. 44 кв.275</p>
-            <p>Лицевой счет: 63229508927</p>
-        </section>
-    </div>
-
-    <section class="support-info-container">
-        <h2>Техническая поддержка сайта:</h2>
-        <p>ООО "ИТ-Эксперт"</p>
-        <p>Режим работы: рабочие дни с 8:00 до 17:00</p>
-        <p>Email: <a href="mailto:help@ikvp.ru">help@ikvp.ru</a></p>
-        <p>При обращении указывайте наименование управляющей компании, адрес или лицевой счет.</p>
-    </section>
-
-
-    <section class="payment-security-container">
-        <h2>Безопасность платежей</h2>
-        <p>Тинькофф</p>
-        <p>Выставленный счет</p>
-        <p>Сумму при необходимости можно изменить.</p>
-        <p>Получатель: ООО "Волжские коммунальные системы" ИНН 6312101799</p>
-        <p>Описание: Оплата ЖКХ: РЕЗНИКОВ ДАНИЛА ЕВГЕНЬЕВИЧ (Голосова ул. 44 кв.275) за л/с 63229508927</p>
-        <p>Сумма: 874 руб. без копеек</p>
-    </section>
+    <!-- Другие разделы -->
 </main>
 
-<footer class="footer-container">
-    <p>© 2014-2023 1С:ЕРЦ Квартплата.</p>
+<footer class="footer">
+    <p class="footer-text">© 2014-2023 1С:ЕРЦ Квартплата.</p>
 </footer>
 
 </body>
+
 </html>

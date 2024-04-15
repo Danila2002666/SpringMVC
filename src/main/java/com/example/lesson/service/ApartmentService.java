@@ -30,4 +30,11 @@ public class ApartmentService {
         apartment.setPerson(person);
         apartamentRepository.save(apartment);
     }
+
+    public List<Apartment> getApartmentsByPerson(){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Person person = personRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
+        List<Apartment> listApartments =  apartamentRepository.findAllByPerson(person);
+        return listApartments;
+    }
 }

@@ -1,7 +1,11 @@
 package com.example.lesson.controller;
 
+import com.example.lesson.models.Apartment;
 import com.example.lesson.models.Person;
+import com.example.lesson.models.Street;
+import com.example.lesson.service.ApartmentService;
 import com.example.lesson.service.PersonService;
+import com.example.lesson.service.StreetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,13 +25,29 @@ import java.util.List;
 public class PersonController {
 
     private final PersonService personService;
+    private final ApartmentService apartmentService;
+    private final StreetService streetService;
+
+    @GetMapping("/main")
+    public String mainUser(Model model) {
+
+        Person user = personService.getUser();
+        List<Apartment> apartments = apartmentService.getApartmentsByPerson();
+        Map<Apartment, Street> apartmentsWithStreets = streetService.getAllStreetByApartments(apartments);
+        model.addAttribute("apartmentsWithStreets", apartmentsWithStreets);
+        model.addAttribute("user",user);
+        return "site/main";
+    }
+
 
     @GetMapping
     public String listPerson(Model model) {
         List<Person> persons = personService.getAllPersons();
-        Person user = personService.getUser();
         model.addAttribute("persons", persons);
+        Person user = personService.getUser();
         model.addAttribute("user",user);
+
+
         return "person/person";
     }
 

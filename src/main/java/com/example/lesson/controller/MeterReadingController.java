@@ -1,8 +1,9 @@
 package com.example.lesson.controller;
 
-import com.example.lesson.models.Apartment;
-import com.example.lesson.models.Meter;
+import com.example.lesson.models.*;
+import com.example.lesson.service.ApartmentService;
 import com.example.lesson.service.MeterReadingService;
+import com.example.lesson.service.PersonService;
 import com.example.lesson.service.StreetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class MeterReadingController {
 
     private final MeterReadingService meterReadingService;
     private final StreetService streetService;
+    private final PersonService personService;
+    private final ApartmentService apartmentService;
 
 
     @PostMapping("/add")
@@ -32,9 +35,16 @@ public class MeterReadingController {
     @GetMapping()
     public String showMeterReadingsForm(Model model) {
         Map<Apartment, List<Meter>> meters = meterReadingService.findPersonMeters();
-//      List<Street> street = streetService.getStreetHashMap(meters);
+        List<Reading> readings = meterReadingService.findPersonReadings();
+        Person user = personService.getUser();
+        List<Apartment> apartments = apartmentService.getApartmentsByPerson();
+        Map<Apartment, Street> apartmentsWithStreets = streetService.getAllStreetByApartments(apartments);
+
+        model.addAttribute("apartmentsWithStreets", apartmentsWithStreets);
+        model.addAttribute("user",user);
+        model.addAttribute("user",user);
         model.addAttribute("meters", meters);
-//      model.addAttribute("street", street);
+        model.addAttribute("readings", readings);
         return "site/meter_readings";
     }
 

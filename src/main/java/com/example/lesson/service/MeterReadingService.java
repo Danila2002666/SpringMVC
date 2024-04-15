@@ -44,6 +44,26 @@ public class MeterReadingService {
         return allMeters;
 
     }
+
+    public List<Reading> findPersonReadings(){
+        List<Reading> readings = new ArrayList<>();
+        List<Meter> allMeters = new ArrayList<>();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Person person = personRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
+        List<Apartment> apartments = apartamentRepository.findAllByPerson(person);
+        for (Apartment apartment : apartments) {
+            List<Meter> allByApartment = meterRepository.findAllByApartment(apartment);
+            for (Meter meter : allByApartment){
+                List<Reading> readingsOneApartment = readingsRepository.findAllByMeter(meter);
+                for (Reading reading : readingsOneApartment){
+                    readings.add(reading);
+                    System.out.println(reading);
+                }
+            }
+        }
+
+        return readings;
+    }
     public List<Reading> saveReading(Map<String,String> allReadings){
         List<Reading> readings = new ArrayList<>();
         // Итерация по ключам мапы и преобразование их в объекты Readin

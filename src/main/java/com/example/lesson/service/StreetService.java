@@ -7,10 +7,7 @@ import com.example.lesson.repository.StreetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +26,18 @@ public class StreetService {
         }
         return  streets;
     }
+
+    public Map<Apartment, Street> getAllStreetByApartments(List<Apartment> apartments){
+        Map<Apartment, Street> apartmentsWithStreets = new HashMap<>();
+
+        for (Apartment apartment : apartments) {
+            Street street = streetRepository.findByApartments(apartment);
+            apartmentsWithStreets.put(apartment, street);
+        }
+        return apartmentsWithStreets;
+    }
+
+
 
 
 }
