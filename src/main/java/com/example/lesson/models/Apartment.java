@@ -51,4 +51,7 @@ public class Apartment {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "rate_id")
     private Rate rate;
+
+    @Column(name = "acount_number")
+    private Long acountNumder;
 }

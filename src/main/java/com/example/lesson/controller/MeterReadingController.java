@@ -26,7 +26,6 @@ public class MeterReadingController {
     private final PersonService personService;
     private final ApartmentService apartmentService;
 
-
     @PostMapping("/add")
     public String submitMeterReadings(@RequestParam Map<String,String> allParams) {
         meterReadingService.saveReading(allParams);
@@ -47,6 +46,4 @@ public class MeterReadingController {
         model.addAttribute("readings", readings);
         return "site/meter_readings";
     }
-
-
 }

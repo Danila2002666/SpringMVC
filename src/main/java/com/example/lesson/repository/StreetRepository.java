@@ -17,3 +17,6 @@ public interface StreetRepository extends JpaRepository<Street, Long> {
     public Street findByApartments(Apartment apartment);
 
 }
+
+
+

@@ -31,20 +31,6 @@ public class MeterReadingService {
     private final ApartamentRepository apartamentRepository;
     private final PersonRepository personRepository;
     private final ReadingsRepository readingsRepository;
-
-    public Map<Apartment, List<Meter>> findPersonMeters() {
-        Map<Apartment, List<Meter>> allMeters = new HashMap<>();
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Person person = personRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
-        List<Apartment> apartments = apartamentRepository.findAllByPerson(person);
-        for (Apartment apartment : apartments) {
-            List<Meter> allByApartment = meterRepository.findAllByApartment(apartment);
-            allMeters.put(apartment, allByApartment);
-        }
-        return allMeters;
-
-    }
-
     public List<Reading> findPersonReadings(){
         List<Reading> readings = new ArrayList<>();
         List<Meter> allMeters = new ArrayList<>();
@@ -61,15 +47,25 @@ public class MeterReadingService {
                 }
             }
         }
-
         return readings;
     }
+    public Map<Apartment, List<Meter>> findPersonMeters() {
+        Map<Apartment, List<Meter>> allMeters = new HashMap<>();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Person person = personRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
+        List<Apartment> apartments = apartamentRepository.findAllByPerson(person);
+        for (Apartment apartment : apartments) {
+            List<Meter> allByApartment = meterRepository.findAllByApartment(apartment);
+            allMeters.put(apartment, allByApartment);
+        }
+        return allMeters;
+
+    }
+
+
     public List<Reading> saveReading(Map<String,String> allReadings){
         List<Reading> readings = new ArrayList<>();
-        // Итерация по ключам мапы и преобразование их в объекты Readin
-
         Iterator<Map.Entry<String, String>> itr = allReadings.entrySet().iterator();
-
         while(itr.hasNext()) {
            Map.Entry<String, String> entry =  itr.next();
            String counterNumber = entry.getKey();
@@ -82,8 +78,6 @@ public class MeterReadingService {
            readings.add(reading);
            readingsRepository.save(reading);
         }
-
         return readings;
-
     }
 }
